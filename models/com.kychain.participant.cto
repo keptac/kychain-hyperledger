@@ -1,0 +1,29 @@
+namespace  com.kychain.participant
+import com.kychain.bank.Bank
+
+abstract participant KychainParticipant identified by idNumber {
+  o String      idNumber
+  o String      firstName
+  o String      middleName optional
+  o String      surname
+  o String      phoneNumber
+  o String      email optional
+}
+
+participant KychainCustomer extends KychainParticipant {
+}
+
+participant KychainBankPersonnel extends KychainParticipant{
+  --> Bank      employer
+  o ROLE        role default = "APPROVER"
+}
+
+participant KychainRegulatorPersonnel extends KychainParticipant{
+  o ROLE        role default = "REGULATOR"
+}
+
+enum ROLE {
+  o   REGULATOR
+  o   APPROVER
+  o   MANAGER
+}

@@ -1,0 +1,17 @@
+namespace com.kychain.bank
+
+asset Bank identified by bankId{
+  o String      bankId
+  o String      bankName
+  o String      address
+}
+
+transaction CreateBank{
+  o String      bankId
+  o String      bankName
+  o String      address
+}
+
+event BankCreated{
+  o String      bankId
+}

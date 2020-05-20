@@ -1,0 +1,25 @@
+{
+  "name": "kychain",
+  "version": "0.0.1",
+  "description": "Blockchain based kyc for banks and FSPs",
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "author": "Kelvin",
+  "email": "keptac.flutter@gmail.com",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "composer-admin": "latest",
+    "composer-client": "latest",
+    "composer-connector-embedded": "latest",
+    "browserfs": "latest",
+    "chai": "latest",
+    "eslint": "latest",
+    "istanbul": "latest",
+    "mkdirp": "latest",
+    "mocha": "latest"
+  },
+  "dependencies": {
+    "chai": "^4.1.2"
+  }
+}
