@@ -27,3 +27,16 @@ enum ROLE {
   o   APPROVER
   o   MANAGER
 }
+
+transaction CreateKychainAccount{
+  o String      idNumber
+  o String      firstName
+  o String      middleName optional
+  o String      surname
+  o String      phoneNumber
+  o String      email optional
+}
+
+event  KychainCreated{
+  o String      idNumber
+}

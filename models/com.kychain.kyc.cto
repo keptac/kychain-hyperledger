@@ -13,7 +13,6 @@ asset Kyc identified by idNumber {
   o Integer     approvalCount default = 0
   --> Bank[]    banks
   --> KychainCustomer  owner
- 
 }
 
 concept Document{
@@ -38,12 +37,11 @@ enum Gender{
   o   FEMALE
 }
 
-// .............................................................. TRANSACTIONS .................................................................
+// .............................................................. TRANSACTIONS ......................................
 // Customer uploads kyc [Initial Upload]. 
 // Create customer Participant and use it the same as bank.
 
 transaction UploadKyc {
-  o String      idNumber
   o String      address
   o String      dateOfBirth
   o Gender      gender
@@ -51,30 +49,12 @@ transaction UploadKyc {
   o Status      assetStatus default="PENDING"
   o Integer     approvalCount default = 0
   o String      ownerId
-
- // o String      firstName
- // o String      middleName optional
- // o String      surname
- // o String      phoneNumber
- // o String      email optional
 }
 
 event KycCreated {
   o String      idNumber
-  o String      kycStat
+  o String      status
 }
-
-//give bank access to record
-transaction GrantAccess{
-  o String      idNumber
-  o String      bankId
-}
-
-event AccessGranted{
-  o String      idNumber
-  o String      bankId  
-}
-
 
 // Update kyc asset using idNumber.
 transaction UpdateKyc{
@@ -90,14 +70,14 @@ event KycUpdated{
   o String      status
 }
 
-
 // Approve KYC Details
 transaction ApproveKyc{
   o String      idNumber
+  o String      bankId
   o Status      status default = "APPROVED"
 }
 
 event KycApproval{
   o String      idNumber
-  o String      approvalStatus
+  o String      status
 }
