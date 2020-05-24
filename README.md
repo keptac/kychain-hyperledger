@@ -20,8 +20,9 @@
 # Add Particapnts
 ## 4 Add a new participants (Banks Admin/RBZ Admin)
 
-- John Doe (johnd) is the Bank X Administrator
-`composer participant add -d '{"$class":"org.acme.airline.participant.ACMENetworkAdmin","participantKey":"johnd","contact":{"$class":"org.acme.airline.participant.Contact","fName":"John","lname":"Doe","email":"john.doe@acmeairline.com"}}' -c admin@kychain`
+- Regulator user
+`composer participant add -d {"$class": "com.kychain.participant.KychainRegulatorPersonnel","role": "REGULATOR","idNumber": "0122","firstName":"Panashe","surname": "Chelenje","phoneNumber":"0774242673"} -c admin@kychain`
+
 
 - Will Smith (wills) is the RBZ Admin
 `composer participant add -d '{"$class":"org.acme.airline.participant.ACMEPersonnel","participantKey":"wills","contact":{"$class":"org.acme.airline.participant.Contact","fName":"Will","lname":"Smith","email":"will.smith@acmeairline.com"}, "department":"Logistics"}' -c admin@kychain`
@@ -32,7 +33,7 @@
 `composer card delete -n johnd@kychain`
 `composer card import -f johnd@kychain.card`
 
-`composer identity issue -u wills -a org.acme.airline.participant.ACMEPersonnel#wills -c admin@kychain `
+`composer identity issue -u 0122 -a com.kychain.participant.KychainRegulatorPersonnel#0122 -c admin@kychain`
 `composer card delete -n wills@kychain`
 `composer card import -f wills@kychain.card`
 
