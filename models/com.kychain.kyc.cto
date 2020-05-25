@@ -3,8 +3,8 @@ import      com.kychain.participant.KychainCustomer
 import      com.kychain.bank.Bank
 
 /** KYC is KYCHAIN Asset*/
-asset Kyc identified by idNumber {
-  o String      idNumber
+asset Kyc identified by kycId {
+  o String      kycId
   o String      address
   o String      dateOfBirth 
   o Gender      gender
@@ -42,6 +42,7 @@ enum Gender{
 // Create customer Participant and use it the same as bank.
 
 transaction UploadKyc {
+  o String      kycId
   o String      address
   o String      dateOfBirth
   o Gender      gender
@@ -52,13 +53,14 @@ transaction UploadKyc {
 }
 
 event KycCreated {
+  o String      kycId
   o String      idNumber
   o String      status
 }
 
 // Update kyc asset using idNumber.
 transaction UpdateKyc{
-  o String      idNumber   
+  o String      kycId   
   o String      address
   o String      documentLink
   o DocumentType  type default = "PROOFOFRESIDENCE"
@@ -66,18 +68,18 @@ transaction UpdateKyc{
 }
 
 event KycUpdated{
-  o String      idNumber
+  o String      kycId
   o String      status
 }
 
 // Approve KYC Details
 transaction ApproveKyc{
-  o String      idNumber
+  o String      kycId
   o String      bankId
   o Status      status default = "APPROVED"
 }
 
 event KycApproval{
-  o String      idNumber
+  o String      kycId
   o String      status
 }

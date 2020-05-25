@@ -4,12 +4,12 @@ query AllKyc {
     SELECT  com.kychain.kyc.Kyc
 }
 
-query KycBank {
-  description: "Returns all KYC for bank"
-  statement:  
-    SELECT  com.kychain.kyc.Kyc
-  	WHERE   (banks == _$flight_number)
-} 
+// query KycBank {
+//   description: "Returns all KYC for bank"
+//   statement:  
+//     SELECT  com.kychain.kyc.Kyc
+//   	WHERE   (banks == _$flight_number)
+// } 
 
 query AllNewKyc {
   description: "Returns all Recently Uploaded KYC for bank"
