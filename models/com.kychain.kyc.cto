@@ -23,6 +23,7 @@ concept Document{
 enum DocumentType{
   o ID
   o PROOFOFRESIDENCE
+  o FACEID
 } 
 
 enum Status {
@@ -63,7 +64,7 @@ transaction UpdateKyc{
   o String      kycId   
   o String      address
   o String      documentLink
-  o DocumentType  type default = "PROOFOFRESIDENCE"
+  o DocumentType  documentType default = "PROOFOFRESIDENCE"
   o Status      status default = "UPDATED"
 }
 
@@ -76,7 +77,7 @@ event KycUpdated{
 transaction ApproveKyc{
   o String      kycId
   o String      bankId
-  o Status      status default = "APPROVED"
+  o Status      status
 }
 
 event KycApproval{

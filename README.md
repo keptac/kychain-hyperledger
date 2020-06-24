@@ -7,7 +7,7 @@
 `composer archive create  --sourceType dir --sourceName ../`
 
 # 2.1 Install the archive
-`composer network install -a ./kychain.bna -c PeerAdmin@hlfv1`
+`composer network install -a ./kychain@0.0.1.bna -c PeerAdmin@hlfv1`
 
 # 2.2 Start the network
 `composer network start -n kychain -c PeerAdmin@hlfv1 -V 0.0.1 -A admin -S adminpw`
