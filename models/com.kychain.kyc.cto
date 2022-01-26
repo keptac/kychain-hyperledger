@@ -3,8 +3,8 @@ import      com.kychain.participant.KychainCustomer
 import      com.kychain.bank.Bank
 
 /** KYC is KYCHAIN Asset*/
-asset Kyc identified by idNumber {
-  o String      idNumber
+asset Kyc identified by kycId {
+  o String      kycId
   o String      address
   o String      dateOfBirth 
   o Gender      gender
@@ -13,7 +13,6 @@ asset Kyc identified by idNumber {
   o Integer     approvalCount default = 0
   --> Bank[]    banks
   --> KychainCustomer  owner
- 
 }
 
 concept Document{
@@ -24,6 +23,7 @@ concept Document{
 enum DocumentType{
   o ID
   o PROOFOFRESIDENCE
+  o FACEID
 } 
 
 enum Status {
@@ -38,12 +38,12 @@ enum Gender{
   o   FEMALE
 }
 
-// .............................................................. TRANSACTIONS .................................................................
+// .............................................................. TRANSACTIONS ......................................
 // Customer uploads kyc [Initial Upload]. 
 // Create customer Participant and use it the same as bank.
 
 transaction UploadKyc {
-  o String      idNumber
+  o String      kycId
   o String      address
   o String      dateOfBirth
   o Gender      gender
@@ -51,53 +51,36 @@ transaction UploadKyc {
   o Status      assetStatus default="PENDING"
   o Integer     approvalCount default = 0
   o String      ownerId
-
- // o String      firstName
- // o String      middleName optional
- // o String      surname
- // o String      phoneNumber
- // o String      email optional
 }
 
 event KycCreated {
-  o String      idNumber
-  o String      kycStat
-}
-
-//give bank access to record
-transaction GrantAccess{
-  o String      idNumber
-  o String      bankId
-}
-
-event AccessGranted{
-  o String      idNumber
-  o String      bankId  
-}
-
-
-// Update kyc asset using idNumber.
-transaction UpdateKyc{
-  o String      idNumber   
-  o String      address
-  o String      documentLink
-  o DocumentType  type default = "PROOFOFRESIDENCE"
-  o Status      status default = "UPDATED"
-}
-
-event KycUpdated{
+  o String      kycId
   o String      idNumber
   o String      status
 }
 
+// Update kyc asset using idNumber.
+transaction UpdateKyc{
+  o String      kycId   
+  o String      address
+  o String      documentLink
+  o DocumentType  documentType default = "PROOFOFRESIDENCE"
+  o Status      status default = "UPDATED"
+}
+
+event KycUpdated{
+  o String      kycId
+  o String      status
+}
 
 // Approve KYC Details
 transaction ApproveKyc{
-  o String      idNumber
-  o Status      status default = "APPROVED"
+  o String      kycId
+  o String      bankId
+  o Status      status
 }
 
 event KycApproval{
-  o String      idNumber
-  o String      approvalStatus
+  o String      kycId
+  o String      status
 }

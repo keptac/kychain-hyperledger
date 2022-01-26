@@ -1,6 +1,6 @@
 {
   "name": "kychain",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Blockchain based kyc for banks and FSPs",
   "scripts": {
     "test": "mocha --recursive"
